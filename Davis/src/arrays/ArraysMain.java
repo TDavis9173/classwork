@@ -8,6 +8,64 @@ public class ArraysMain {
 	private String[] values;
 
 	public ArraysMain() {
+		tuesdayMethods();
+	}
+	
+	private void tuesdayMethods() {
+		int[] orderTest = {1,2,3,4,5,6,7,8,9,10};
+		cycleThrough(orderTest,5);
+		System.out.println(Arrays.toString(orderTest));
+		
+	}
+
+	private void cycleThrough(int[] arr, int z) {
+		for(int i=0;i<z;i++) {
+			frontToBack(arr);
+		}
+		
+	}
+
+	private int longestConsecutiveSequence(int[]arr) {
+		int max=1;
+		int count =1;
+		for(int i= 0;i<arr.length;i++) {
+			while(i+count<arr.length && sequence(arr,i,i+count)) {
+				count++;
+			}
+			if(count>max) {
+				max=count;
+			}
+			i = i+count-1;
+			count = 1;
+		}
+		return max;
+	}
+	private boolean sequence(int[]arr, int start,int end) {
+		int z=end-start+1;
+		for(int i=start;i<end;i++) {
+			if(arr[i]!=arr[i+1]-1) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private void frontToBack(int[] arr) {
+		for(int i=0;i<arr.length-1;i++) {
+			swap(arr,i,i+1);
+		}
+	}
+
+	private void printDeck() {
+		String[] deck = new String[52];
+		int idx = 0;
+		for(String suits:suits) {
+			for(String values:values) {
+				deck[idx] = values + " of " +suits;
+			}
+		}
+	}
+	public void cardMethods() {
 		suits = new String[4];
 		suits[0]="Clubs";
 		suits[1]="Hearts";
@@ -22,19 +80,13 @@ public class ArraysMain {
 		values[11]="Queen";
 		values[10]="Jack";
 		printDeck();
+	}	
+	private void warmUpMethods() {
+		int[] orderTest = {1,2,3,4,5,6,7,8,9,10};
+		reverseOrder(orderTest);
+		System.out.println(Arrays.toString(orderTest));
+		System.out.println(Arrays.toString(subArray(orderTest,3,4)));
 	}
-	
-	private void printDeck() {
-		String[] deck = new String[52];
-		int idx = 0;
-		for(String suits:suits) {
-			for(String values:values) {
-				System.out.println("");
-			}
-		}
-	}
-		
-
 	private void shuffle(int[] arr) {
 		int x = 10000;
 		int z = arr.length;
@@ -43,10 +95,19 @@ public class ArraysMain {
 			int b = (int)(Math.random() * z);
 			swap(arr,a,b);
 		}
-			
-		
 	}
-
+	private void reverseOrder(int[] arr) {
+		for(int i=0;i<arr.length/2;i++) {
+			swap(arr,i,arr.length-1-i);
+		}
+	}
+	private int[] subArray(int[]arr,int psn,int length){
+		int[] z = new int[length];
+		for(int i=0;i<length;i++) {
+			z[i]=arr[psn+i];
+		}
+		return z;
+	}
 	private void swap(int[] arr, int i, int j) {
 		int x = arr[i];
 		arr[i]=arr[j];
