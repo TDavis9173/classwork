@@ -8,13 +8,39 @@ public class ArraysMain {
 	private String[] values;
 
 	public ArraysMain() {
-		tuesdayMethods();
+		wendsdayMethods();
 	}
 	
 	private void tuesdayMethods() {
 		int[] orderTest = {1,2,3,4,5,6,7,8,9,10};
 		cycleThrough(orderTest,5);
 		System.out.println(Arrays.toString(orderTest));
+		
+	}
+	private void wendsdayMethods() {
+		int[] diceRolls = new int [99999999]; 
+		populate(diceRolls);
+		int[] data=longestConsecutiveSeqAndIndex(diceRolls);
+		int longest = data[0];
+		System.out.println("longest was "+longest+" on "+data[1]+" the sequence was:"+ Arrays.toString(subArray(diceRolls,data[1],data[0]))+".");
+	}
+	//usually a method returns 1 piece of data however with arrays multiple pieces of data can be returned
+	private int[] longestConsecutiveSeqAndIndex(int[] arr) {
+		int[] data= new int[2];
+		data[0]=1;
+		int count =1;
+		for(int i= 0;i<arr.length;i++) {
+			while(i+count<arr.length && sequence(arr,i,i+count)) {
+				count++;
+			}
+			if(count>data[0]) {
+				data[0]=count;
+				data[1]=i;
+			}
+			i = i+count-1;
+			count = 1;
+		}
+		return data;
 		
 	}
 
