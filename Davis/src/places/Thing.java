@@ -7,6 +7,6 @@ public class Thing {
 		this.description=d;
 	}
 	public String toString() {
-		return "I am a "+description+". What did you expect!?";
+		return description;
 	}
 }
