@@ -6,6 +6,7 @@ public class Person {
 	private Borough home;
 	private Hobby hobby;
 	private Person[] friends;
+	private String nickname;
 	
 	public static final String[] FIRST_START = {"Chr","Am","L","Th","An","Br","B"};
 	public static final String[] FIRST_MIDDLE = {"ala","ima","e","o","anna","ola","alpha"};
@@ -20,6 +21,7 @@ public Person(String first,String last,Borough home) {
 	this.home =home;
 	friends = new Person[3];
 	hobby = Hobby.randomHobby();
+	nickname= createNickname(firstName);
 	}
 public void stateYourFriends() {
 	String s = "";
@@ -32,6 +34,33 @@ public void stateYourFriends() {
 		}
 		System.out.println(s);
 	}
+}
+// Pass by values: the parameters of a method contain only values not references
+//therefore when they are changed the reference to the original object does not change
+public static String createNickname(String name) {
+	String z="";
+	int count =0;
+	for(int i =0;i<name.length();i++) {
+		if(isVowel(name.substring(i, i+1).toLowerCase())&&count == 1) {
+			return name.substring(0, i);
+		}
+		if(isVowel(name.substring(i, i+1).toLowerCase())&&count == 0) {
+			count++;
+		}
+	}
+	return name;
+}
+public String getFirstName() {
+	return firstName;
+}
+public void setFirstName(String firstName) {
+	this.firstName = firstName;
+}
+public static boolean isVowel(String letter) {
+	if(letter.equals("a")||letter.equals("e")||letter.equals("o")||letter.equals("i")||letter.equals("u")) {
+		return true;
+	}
+	return false;
 }
 public void setInFirstPlace(Person f) {
 	for(int i = friends.length -1;i>0;i--) {
@@ -47,6 +76,6 @@ public void mingle(Person[] peers) {
 	}
 }
 public String toString() {
-	return "My name is "+firstName+" "+lastName+" and I am from "+home+".";
+	return "My name is "+firstName+" "+lastName+" call me "+nickname+" and I am from "+home+".";
 }
 }
