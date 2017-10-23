@@ -27,7 +27,7 @@ public class CaveRoom {
 		for(int i=0;i<4;i++) {
 			if(doors[i] != null) {
 				doorFound = true;
-				directions +="There is a" +doors[i].getDescription()+ "to the"+ toDirection(i)+"."+doors[i].getDetails(+)"\n";
+				directions +="There is a" +doors[i].getDescription()+ "to the"+ toDirection(i)+"."+doors[i].getDetails()+"\n";
 			}
 		if(!doorFound) {
 			directions = "Ur traped";
