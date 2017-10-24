@@ -45,6 +45,51 @@ public class CaveRoom {
 		}
 		else return "waitWut";
 	}
+	public void enter() {
+		contents = "X";
+	}
+	public void leave() {
+		contents = defaultContents;
+	}
+	public void setConnection(int direction,CaveRoom anotherRoom,Door door) {
+		addRoom(direction, anotherRoom,door);
+		anotherRoom.addRoom(oppositeDirection(direction),this,door);
+	}
+	public void addRoom(int dir, CaveRoom caveRoom, Door door) {
+		borderingRooms[dir] = caveRoom;
+		doors[dir] = door;
+		setDirections();
+		
+	}
+	public void interpretInput(String input) {
+		while(!isValid(input)) {
+			System.out.println("you can only enter 'w','a','s',or'd'");
+			input = CaveExplorer.in.nextLine();
+		}
+		int direction = "wdsa".indexOf(input);
+		goToRoom(direction);
+	}
+	private boolean isValid(String input) {
+	
+		return "wasd".indexOf(input) != -1 && input.length()==1;
+	}
+	//where you edit caves
+	public static void setUpCaves() {
+		
+	}
+	public void goToRoom(int direction) {
+		if(borderingRooms[direction] !=null && doors[directions] != null && doors[direction].isOpen()) {
+			CaveExplorer.currentRoom.leave();
+			CaveExplorer.currentRoom = borderingRooms[direction];
+			CaveExplorer.currentRoom.enter();
+			CaveExplorer.inventory.updateMap();
+		}else {
+			System.err.println("you can't do that");
+		}
+	}
+	public static int oppositeDirection(int dir) {
+		return (dir+2)%4;
+	}
 	public void setDefaultContents(String defaultContents) {
 		this.defaultContents = defaultContents;
 	}
