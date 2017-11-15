@@ -37,6 +37,9 @@ public class Habitat extends Environment {
 		}
 		
 	}
+	public Animal[] getAnimals() {
+		return animals;
+	}
 	public void removeAnimal(int i) {
 		animals[i]=null;
 	}
