@@ -59,7 +59,7 @@ public class Animal {
 		age++;
 	}
 	public void act() {
-		System.out.println(this + "is sleeping");
+		System.out.println(this + " is sleeping");
 		mated = true;
 	}
 	public void setMated(boolean b) {

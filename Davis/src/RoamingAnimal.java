@@ -35,12 +35,12 @@ public class RoamingAnimal extends Animal {
 		return sex;
 	}
 	public void mate() {
-		System.out.println(this +"does not have a mating ritual.");
+		System.out.println(this +" does not have a mating ritual.");
 	}
 	public void act() {
 		increaseAge();
 		if(!canEat()) {
-			System.out.println(this + "died of starvation");
+			System.out.println(this + " died of starvation");
 			habitat.removeAnimal(this);
 		}
 		if(getAge() > 5) {
