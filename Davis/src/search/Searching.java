@@ -53,7 +53,7 @@ public class Searching {
 			System.out.println("The number " + target + " was not found in the file.");
 	}
 	
-	public int binarySearch(int[] searchThis, int startIndex, int endIndex, int target) {
+	public static int binarySearch(int[] searchThis, int startIndex, int endIndex, int target) {
 		delay();
 		if(startIndex > endIndex)
 			return -1;
@@ -83,7 +83,7 @@ public class Searching {
 	 * If you are running this on a slow machine, you can decrease the HANDICAP
 	 * field to decrease the length of the delay
 	 */
-	private void delay() {
+	private static void delay() {
 		try {
 			Thread.sleep(HANDICAP);
 		} catch (InterruptedException e) {
